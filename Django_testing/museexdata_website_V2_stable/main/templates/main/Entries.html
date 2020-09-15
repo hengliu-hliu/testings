@@ -1,0 +1,60 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Entries
+{% endblock %}
+
+{% block content %}
+    <h1>Entries</h1>
+
+    <h3>Exhibits</h3>
+    <table>
+        <tr>
+            <th>name</th>
+            <th>author</th>
+            <th>url</th>
+            <th>start date</th>
+            <th>end date</th>
+            <th>description</th>
+
+        </tr>
+        {% for item in exhibits %}
+        <tr>
+            <td>{{item.name_exhibit}}</td>
+            <td>{{item.author_exhibit}}</td>
+            <td>{{item.url_exhibit}}</td>
+            <td>{{item.startdate_exhibit}}</td>
+            <td>{{item.enddate_exhibit}}</td>
+            <td>{{item.description_exhibit}}</td>
+        </tr>
+            {% endfor %}
+    </table>
+
+
+
+    <h3>Institutions</h3>
+    <table>
+        <tr>
+            <th>name</th>
+            <th>url</th>
+            <th>category</th>
+            <th>address</th>
+            <th>phone number</th>
+            <th>email</th>
+
+        </tr>
+        {% for item in institutions %}
+        <tr>
+            <td>{{item.name_institution}}</td>
+            <td>{{item.url_institution}}</td>
+            <td>{{item.category_institution}}</td>
+            <td>{{item.address_institution}}</td>
+            <td>{{item.contact_phone_institution}}</td>
+            <td>{{item.contact_email_institution}}</td>
+        </tr>
+            {% endfor %}
+    </table>
+
+
+
+{% endblock %}

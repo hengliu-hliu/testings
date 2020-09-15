@@ -1,0 +1,195 @@
+# defnizione di una Label per il testo
+<BlackLabel@Label>:
+    color: (0,0,0,1)
+
+# definizione di una Label per il titolo personalizzata
+<TitleLabel@Label>:
+    canvas.before:
+        Color:
+            rgba: (1, 0.5, 0, 1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    color: (1, 1, 1, 1)
+
+# creazione di un custom spinner
+<CustomSpinner@Spinner>:
+    background_normal: ""
+    background_color: (1, 0.5, 0, 1)
+    color: (0, 0, 0, 1)
+
+# creazione di un custom textinput
+<CustomTextInput@TextInput>:
+    multiline: False
+    halign: "center"
+
+
+
+# stile della schermata MainWindow
+<MainWindow>:
+    submit_button: submit_button
+    nome: nome
+    cognome: cognome
+    giorno: giorno
+    mese: mese
+    anno: anno
+    luogo_di_nascita: luogo_di_nascita
+    professione: professione
+
+    BoxLayout:
+        padding: 20
+        id: main_box
+        canvas.before:
+            Color:
+                rgba: (1,1,1,1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        orientation: "vertical"
+        BoxLayout:
+            id: title
+            size_hint_y: 0.20
+            TitleLabel:
+                font_size: 30
+                bold: True
+                text: "Form da compilare"
+        BoxLayout:
+            padding: 20
+            spacing: 10
+            id: fields
+            orientation: "vertical"
+            BoxLayout:
+                size_hint_y: None
+                height: 30
+                BlackLabel:
+                    text: "Nome"
+                CustomTextInput:
+                    id: nome
+                    multiline: False
+                    hint_text: "Nome"
+                    halign: "center"
+            BoxLayout:
+                size_hint_y: None
+                height: 30
+                BlackLabel:
+                    text: "Cognome"
+                CustomTextInput:
+                    id: cognome
+                    hint_text: "Cognome"
+                    multiline: False
+            BoxLayout:
+                size_hint_y: None
+                height: 30
+                BlackLabel:
+                    text: "Data di nascita"
+                BoxLayout:
+                    id: data_di_nascita
+                    orientation: "horizontal"
+                    spacing: 5
+                    CustomSpinner:
+                        id: giorno
+                        text: "giorno"
+                        values: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"]
+                    CustomSpinner:
+                        id: mese
+                        text: "mese"
+                        values: ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
+                    CustomSpinner:
+                        id: anno
+                        text: "anno"
+                        values: ["2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990"]
+            BoxLayout:
+                size_hint_y: None
+                height: 30
+                BlackLabel:
+                    text: "Luogo di nascita"
+                CustomTextInput:
+                    id: luogo_di_nascita
+                    hint_text: "Luogo di nascita"
+                    multiline: False
+            BoxLayout:
+                size_hint_y: None
+                height: 30
+                BlackLabel:
+                    text: "Professione"
+                CustomSpinner:
+                    id: professione
+                    text: "Scegli opzione"
+                    values: ["studente", "lavoratore", "disoccupato", "pensionato", "artista"]
+            BoxLayout:
+        BoxLayout:
+            id: button
+            size_hint_y: .1
+            Label:
+            Button:
+                id: submit_button
+                background_normal: ""
+                background_color: (1, 0.5, 0, 1)
+                text: "Invia"
+                on_press:
+                    self.background_color = (1, 0, 0, 0.8)
+                on_release:
+                    self.background_color = (1, 0.5, 0, 1)
+                    root.conferma_invio_form()
+            Label:
+
+
+# definizione dello stile per la finestra popup
+<CustomPopup>:
+    invia_form: invia_form
+    BoxLayout:
+        canvas.before:
+            Color:
+                rgba: (1, 1, 1, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        orientation: "vertical"
+        Label:
+            text: "Sei sicuro di inviare il form?"
+            color: ( (1, 0.5, 0, 1))
+        BoxLayout:
+            Button:
+                size_hint_y: None
+                height: 50
+                text: "Cancel"
+                on_release:
+                    root.dismiss_popup()
+            Button:
+                id: invia_form
+                size_hint_y: None
+                height: 50
+                text: "Invia"
+                on_release:
+                    root.invia_form()
+                    root.dismiss_popup()
+
+# definizione stile schermata SecondWindow
+<SecondWindow>:
+    name: "secondwindow"
+    BoxLayout:
+        canvas.before:
+            Color:
+                rgba: (1,1,1,1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        orientation: "vertical"
+        Label:
+            color: (0, 0, 0, 1)
+            text: "Grazie per aver compilato il form"
+        Button:
+            size_hint_y: None
+            height: 50
+            text: "indietro"
+            on_release:
+                root.go_back()
+
+
+
+
+
+
+
+
+
